@@ -11,11 +11,11 @@ import (
 var DB *gorm.DB
 
 func Init() {
-    host := os.Getenv("PGHOST")
-    user := os.Getenv("PGUSER")
-    password := os.Getenv("PGPASSWORD")
-    dbname := os.Getenv("PGDATABASE")
-    port := os.Getenv("PGPORT")
+    host := "roundhouse.proxy.rlwy.net"
+    user := "postgres"
+    password := "ltcqbyPICklOdjBqJWgosPiuLVpuCXco"
+    dbname := "railway"
+    port := 18517
     
     dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=disable", host, user, password, dbname, port)
     db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
