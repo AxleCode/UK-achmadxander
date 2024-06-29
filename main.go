@@ -43,5 +43,5 @@ func main() {
         socialMediaRoutes.DELETE("/:socialMediaId", middlewares.Authentication(), controllers.DeleteSocialMedia)
     }
 
-    r.Run(":8081")
+    r.Run(“:” + PORT)
 }
