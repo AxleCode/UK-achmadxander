@@ -1,8 +1,8 @@
-// uk-achmadxander/database/database.go
 package database
 
 import (
     "fmt"
+    "os"
     "gorm.io/driver/postgres"
     "gorm.io/gorm"
     "uk-achmadxander/models"
@@ -11,7 +11,13 @@ import (
 var DB *gorm.DB
 
 func Init() {
-    dsn := "host=os.Getenv(PGHOST) user=os.Getenv(PGUSER) password=os.Getenv(PGPASSWORD) dbname=os.Getenv(PGDATABASE) port=os.Getenv(PGPORT) sslmode=disable"
+    host := os.Getenv("PGHOST")
+    user := os.Getenv("PGUSER")
+    password := os.Getenv("PGPASSWORD")
+    dbname := os.Getenv("PGDATABASE")
+    port := os.Getenv("PGPORT")
+    
+    dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=disable", host, user, password, dbname, port)
     db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
     if err != nil {
         panic("failed to connect to database")
