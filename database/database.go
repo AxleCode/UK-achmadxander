@@ -11,7 +11,7 @@ import (
 var DB *gorm.DB
 
 func Init() {
-    dsn := "host=localhost user=postgres password=watesnegoro dbname=MyGram port=5432 sslmode=disable"
+    dsn := "host=os.Getenv(PGHOST) user=os.Getenv(PGUSER) password=os.Getenv(PGPASSWORD) dbname=os.Getenv(PGDATABASE) port=os.Getenv(PGPORT) sslmode=disable"
     db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
     if err != nil {
         panic("failed to connect to database")
