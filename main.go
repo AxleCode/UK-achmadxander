@@ -1,6 +1,7 @@
 package main
 
 import (
+    "os"
     "uk-achmadxander/controllers"
     "uk-achmadxander/database"
     "uk-achmadxander/middlewares"
@@ -43,5 +44,10 @@ func main() {
         socialMediaRoutes.DELETE("/:socialMediaId", middlewares.Authentication(), controllers.DeleteSocialMedia)
     }
 
-    r.Run(“:” + PORT)
+    port := os.Getenv("PORT")
+    if port == "" {
+        port = "8080"
+    }
+
+    r.Run(":" + port)
 }
