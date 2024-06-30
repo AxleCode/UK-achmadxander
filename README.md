@@ -5,8 +5,7 @@ Build API MyGram (social media)
 
 Railway Public API
 
-uk-achmadxander-production.up.railway.app
-
+Link : uk-achmadxander-production.up.railway.app
 
 
 ● github.com/dgrijalva/jwt-go
