@@ -11,7 +11,7 @@ import (
 var DB *gorm.DB
 
 func Init() {
-    host := os.Getenv("PGHOST")
+    host := os.Getenv("monorail.proxy.rlwy.net")
     user := os.Getenv("PGUSER")
     password := os.Getenv("PGPASSWORD")
     dbname := os.Getenv("PGDATABASE")
