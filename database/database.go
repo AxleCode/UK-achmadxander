@@ -1,5 +1,8 @@
+package database
+
 import (
     "fmt"
+    "os"
     "gorm.io/driver/postgres"
     "gorm.io/gorm"
     "uk-achmadxander/models"
@@ -8,23 +11,20 @@ import (
 var DB *gorm.DB
 
 func Init() {
-    connStr := "postgresql://postgres:xMuGVQlTocJKWyOEizFFglIBkJJYzaoR@viaduct.proxy.rlwy.net:47282/railway"
-
-    var err error
-    DB, err = gorm.Open(postgres.Open(connStr), &gorm.Config{})
-    if err != nil {
-        log.Fatal(err)
+    dsn := os.Getenv("DATABASE_URL")
+    if dsn == "" {
+        panic("DATABASE_URL environment variable is not set")
     }
 
-    sqlDB, err := DB.DB()
+    fmt.Println("Connecting to database with DSN:", dsn)
+
+    db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
     if err != nil {
-        log.Fatal(err)
+        panic("failed to connect to database")
     }
 
-    err = sqlDB.Ping()
-    if err != nil {
-        log.Fatal(err)
-    }
+    db.AutoMigrate(&models.User{}, &models.Photo{}, &models.Comment{}, &models.SocialMedia{})
 
-    log.Println("Successfully connected to the database!")
+    DB = db
+    fmt.Println("Database connected successfully")
 }
