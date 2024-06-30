@@ -1,5 +1,3 @@
-package database
-
 import (
     "fmt"
     "gorm.io/driver/postgres"
@@ -12,13 +10,19 @@ var DB *gorm.DB
 func Init() {
     connStr := "postgresql://postgres:xMuGVQlTocJKWyOEizFFglIBkJJYzaoR@viaduct.proxy.rlwy.net:47282/railway"
 
-    db, err := sql.Open("postgres", connStr)
-    if err!= nil {
+    var err error
+    DB, err = gorm.Open(postgres.Open(connStr), &gorm.Config{})
+    if err != nil {
         log.Fatal(err)
     }
 
-    err = db.Ping()
-    if err!= nil {
+    sqlDB, err := DB.DB()
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    err = sqlDB.Ping()
+    if err != nil {
         log.Fatal(err)
     }
 
