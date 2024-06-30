@@ -44,7 +44,10 @@ func main() {
         socialMediaRoutes.DELETE("/:socialMediaId", middlewares.Authentication(), controllers.DeleteSocialMedia)
     }
 
-    var PORT := os.Getenv("PORT")
+    port := os.Getenv("PORT")
+    if port == "" {
+        port = "8080"
+    }
 
-    routers.StartServer().r.Run(":" + PORT)
+    r.Run(":" + port)
 }
