@@ -1,3 +1,5 @@
+package database
+
 import (
     "fmt"
     "os"
@@ -15,14 +17,7 @@ func Init() {
     dbname := os.Getenv("PGDATABASE")
     port := os.Getenv("PGPORT")
 
-    
-    fmt.Println("Environment variables:")
-    fmt.Println("PGHOST:", host)
-    fmt.Println("PGUSER:", user)
-    fmt.Println("PGPASSWORD:", password)
-    fmt.Println("PGDATABASE:", dbname)
-    fmt.Println("PGPORT:", port)
-
+    // Check if any environment variable is empty
     if host == "" || user == "" || password == "" || dbname == "" || port == "" {
         panic("One or more environment variables are not set")
     }
