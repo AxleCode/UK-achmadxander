@@ -15,6 +15,7 @@ func Init() {
     dbname := os.Getenv("PGDATABASE")
     port := os.Getenv("PGPORT")
 
+    
     fmt.Println("Environment variables:")
     fmt.Println("PGHOST:", host)
     fmt.Println("PGUSER:", user)
