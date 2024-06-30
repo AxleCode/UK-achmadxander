@@ -12,10 +12,10 @@ var DB *gorm.DB
 
 func Init() {
     host := os.Getenv("monorail.proxy.rlwy.net")
-    user := os.Getenv("PGUSER")
-    password := os.Getenv("PGPASSWORD")
-    dbname := os.Getenv("PGDATABASE")
-    port := os.Getenv("PGPORT")
+    user := os.Getenv("postgres")
+    password := os.Getenv("iJDsWndSUZHnyFIOWJtcmvLEnkcLZUZH")
+    dbname := os.Getenv("railway")
+    port := os.Getenv("14363")
 
     fmt.Println("Environment variables:")
     fmt.Println("PGHOST:", host)
